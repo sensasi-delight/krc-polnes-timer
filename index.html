@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Line Follower Robot Competition 2014</title>
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="stopwatch.js">
+	</script>
+</head>
+
+	<body>
+		<!--
+		<button type="button" onclick="pause()">pause()</button>
+		<button type="button" onclick="resume()">resume()</button>
+		<button type="button" onclick="reset()">reset</button>
+		<button type="button" onclick="start()">start</button>
+		<button type="button" onclick="changeMode()">Mode</button>
+		-->
+		
+		<div id="wrapper" width=100% align="center">
+
+		<audio src="prepare.mp3" id="prepare" preload="auto"></audio>
+		<audio src="win.mp3" id="win" preload="auto"></audio>
+		<audio src="start.mp3" id="start" preload="auto"></audio>
+		<audio src="times up.mp3" id="limit" preload="auto"></audio>
+
+		<p id="mode" style="color: grey;font-family:cyberspace;font-size:20px; text-align:center;">PREPARATION TIME</p>
+		<div id="pagar">
+			<div id='disp'></div>
+			<div id="dispMs"></div>
+			
+			<script>
+				kalkulasi(countd);
+				document.getElementById('disp').innerHTML=min+":"+sec;
+				document.getElementById('dispMs').innerHTML=ms;
+			</script>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<div style='clear:both;'></div>
+		<table border=0>
+		<tr style="font-family:cyberspace;font-size:40px; text-align:center;">
+		<td width=40% style="color:red">RED TEAM</td>
+		<td>VS</td>
+		<td width=41% style="color:blue">
+		BLUE TEAM
+		</td>
+		</tr>
+		<tr class="rec"><td id="finA">00:00</td><td class="zone">Finish</td><td id="finB">00:00</td></tr>
+		
+		</table>
+		</div>
+	</body>
