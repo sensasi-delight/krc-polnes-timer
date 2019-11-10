@@ -1,0 +1,125 @@
+@font-face {
+	font-family: "cyberspace";
+	src: url("../font/cyberspace.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "digital-7";
+	src: url("../font/digital-7.ttf");
+}
+
+* {
+	margin:0;
+	padding:0
+}
+
+.clear{
+	clear:both;
+}
+
+body
+{	
+	color:#fff;
+	font-family:'digital-7';
+}
+
+.bg-image {
+	background:url(../img/bg1.jpg) repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: absolute;
+	z-index: -100;
+
+	opacity: .9;
+	filter: alpha(opacity=50);
+}
+	
+.container
+{
+	margin-top: 10rem;
+    padding-top: 20px;
+	text-align: center;
+}
+
+.mode {
+	color: orange;
+	font-family:cyberspace;
+	font-size:20px;
+	text-align:center;
+	margin-bottom: 20px;
+}
+
+.timer{
+	margin:0 auto;
+	width:30rem;
+	height: 9rem;
+	/* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.counter
+{
+	font-size:150px;
+	float:left;
+	margin-left:80px;
+	height: 7.5rem;
+	margin-top: 10px;
+}
+
+.ms
+{
+	font-size:50px;
+	margin-top:83px;
+	margin-left:10px;
+	float:left;
+}
+
+.box-team {
+	font-family: cyberspace;
+	font-size: 40px;
+	text-align: center;
+	display: inline-block;
+	margin: 60px;
+}
+
+.red, .blue {
+	font-weight: 100;
+}
+
+.blue h5 {
+	font-weight: 100;
+	color: blue;
+	margin-bottom: 20px;
+}
+
+.red h5 {
+	font-weight: 100;
+	color: red;
+	margin-bottom: 20px;
+}
+
+.zone
+{
+	font-size: 35px;
+	font-family: cyberspace;
+	color: orange;
+}
+
+.winner {
+	margin-bottom: 30px;
+	font-size: 35px;
+	font-family: cyberspace;
+	color: orange;
+}
+
+.lose {
+	margin-bottom: 30px;
+	font-size: 35px;
+	font-family: cyberspace;
+	color: whitesmoke;
+}

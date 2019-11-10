@@ -19,6 +19,8 @@ var begin;
 var mark;
 var display;		
 var loop;
+var win;
+var txtWin;
 
 var countd=5*1000; //waktu hitung mundur di set disini dalam milisecond 
 var countu=15*60*1000; //waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
@@ -27,18 +29,35 @@ window.addEventListener("keyup", check, false);
 
 function check(e)
 {
+	// Debug untuk memastikan keyCode yang ditekan pada keyboard.
+	// console.log(e.keyCode);
 	switch(e.keyCode)
 	{
-							//Keymap, untuk mengeset key masukan kode ascii nya. info kode ascii lihat disini http://www.theasciicode.com.ar/
-		case 112:if(a==0){fin("A")};break; 	//112 = F1
-		case 119:if(b==0){fin("B")};break; 	//119 = F8
-		case 32:if(stat[0]==1){initCountDown()} //32 = Spasi
+		//Keymap, untuk mengeset key masukan kode ascii nya. info kode ascii lihat disini http://www.theasciicode.com.ar/
+		// case 112:if(a==0){fin("A")};break; 	//112 = F1
+		// case 119:if(b==0){fin("B")};break; 	//119 = F8
+		case 65:
+			if(a==0){fin("A")};
+			break; 								//65 = a => untuk TIM A
+		case 66:
+			if(b==0){fin("B")};
+			break; 								//66 = b => untuk TIM B
+		case 32:
+			if(stat[0]==1){initCountDown()} 	//32 = Spasi
 			else{initCountUp()};
 			break;     	
-		case 49:reset1();break;		   	//49 = 1
-		case 50:reset2();break;		   	//50 = 2
-		case 81:pause();break;			//81 = Q
-		case 87:resume();break;			//82 = W
+		case 49:
+			reset1();
+			break;		   						//49 = 1
+		case 50:
+			reset2();
+			break;		   						//50 = 2
+		case 81:
+			pause();
+			break;								//81 = Q
+		case 87:
+			resume();
+			break;								//82 = W
 	}
 }
 
@@ -136,9 +155,9 @@ function initCountDown()
 {
 	if(stat[0]==1)
 	{
-	begin=new Date().getTime()+(countd);
-	stat=[0, 1, 1, 0, 1, 0];
-	countdown();
+		begin=new Date().getTime()+(countd);
+		stat=[0, 1, 1, 0, 1, 0];
+		countdown();
 	}
 }
 
@@ -147,16 +166,15 @@ function initCountUp()
 {
 	if(stat[1]==1)
 	{
-	document.getElementById('mode').innerHTML="";
-	document.getElementById("prepare").play();
-	
-	setTimeout(function(){
-	document.getElementById("start").play();
-	stat=[0, 0, 1, 0, 1, 1];
-	begin=new Date().getTime();
-	count();
-	
-	},7200)
+		document.getElementById('mode').innerHTML="";
+		document.getElementById("prepare").play();
+		
+		setTimeout(function(){
+			document.getElementById("start").play();
+			stat=[0, 0, 1, 0, 1, 1];
+			begin=new Date().getTime();
+			count();
+		},7200)
 	
 	}
 }
@@ -171,12 +189,12 @@ function pause()
 	{
 		if(stat[1]==1)
 		{
-		stat=[0, 1, 0, 1, 1, 0];
+			stat=[0, 1, 0, 1, 1, 0];
 		}
 
 		if(stat[1]==0)
 		{
-		stat=[0, 0, 0, 1, 1, 0];
+			stat=[0, 0, 0, 1, 1, 0];
 		}
 	}
 }
@@ -190,14 +208,14 @@ function resume()
 
 		if(stat[1]==1)
 		{
-		stat=[0, 1, 1, 0, 0, 0];
-		countdown();
+			stat=[0, 1, 1, 0, 0, 0];
+			countdown();
 		}
 
 		if(stat[1]==0)
 		{
-		stat=[0, 0, 1, 0, 0, 1];
-		count();
+			stat=[0, 0, 1, 0, 0, 1];
+			count();
 		}		
 	}
 }
@@ -207,21 +225,21 @@ function reset1()
 {
 	if(stat[4]==1)
 	{
-	document.getElementById('mode').innerHTML="PREPARATION TIME";
+		document.getElementById('mode').innerHTML="PREPARATION TIME";
 
-	kalkulasi(countu);
-	document.getElementById('disp').innerHTML=min+":"+sec;
-	document.getElementById('dispMs').innerHTML=ms;
+		kalkulasi(countu);
+		document.getElementById('disp').innerHTML=min+":"+sec;
+		document.getElementById('dispMs').innerHTML=ms;
 
-	document.getElementById("finA").innerHTML="00:00";
-	document.getElementById("finB").innerHTML="00:00";
-	
-	a=0;
-	b=0;
-	tim=0;
-	
-	clearTimeout(loop);
-	stat=[1, 0, 0, 0, 0, 0];
+		document.getElementById("finA").innerHTML="00:00";
+		document.getElementById("finB").innerHTML="00:00";
+		
+		a=0;
+		b=0;
+		tim=0;
+		
+		clearTimeout(loop);
+		stat=[1, 0, 0, 0, 0, 0];
 	}
 }
 
@@ -248,15 +266,24 @@ function fin(team)
 {
 	if(stat[5]==1)
 	{
-	tim++;
-	document.getElementById("win").play();
-	
-	switch(team)
-	{
-		case "A":a=1;break;
-		case "B":b=1;break;
-	}
+		tim++;
+		document.getElementById("win").play();
+		
+		switch(team)
+		{
+			case "A":
+				a=1;
+				win= (win === 1) ? 2 : 1;
+				break;
+			case "B":
+				b=1;
+				win= (win === 1) ? 2 : 1;
+				break;
+		}
 
-	document.getElementById("fin"+team).innerHTML=display;
+		document.getElementById("fin"+team).innerHTML=display;
+		txtWin = (win == 1) ? 'WINNER' : 'LOSE';
+		((win == 1) ? document.getElementById("winTeam"+team).setAttribute('class', 'winner') : document.getElementById("winTeam"+team).setAttribute('class', 'lose'));
+		document.getElementById("winTeam"+team).innerHTML=txtWin;
 	}
 }
