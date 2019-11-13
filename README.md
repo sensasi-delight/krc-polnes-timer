@@ -14,6 +14,7 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
 * **w** : untuk resume.
 * **a** : untuk menyimpan waktu ke team A.
 * **b** : untuk menyimpan waktu ke team B.
+* **m** : untuk turn on/off (Aktif/Tidak Aktif) Audio.
 
 ## Perubahan
 
