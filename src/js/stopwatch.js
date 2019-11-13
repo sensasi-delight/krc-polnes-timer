@@ -1,4 +1,4 @@
-var stat=[1, 0, 0, 0, 0, 0];
+let stat=[1, 0, 0, 0, 0, 0];
 /* 	array 0 = countdown
 	array 1 = countup
 	array 2 = pause
@@ -7,23 +7,28 @@ var stat=[1, 0, 0, 0, 0, 0];
 	array 5 = cetak
 */
 
-var min;
-var sec;
-var ms;
+let min;
+let sec;
+let ms;
 
-var a=0;
-var b=0;
-var tim=0;
+let a=0;
+let b=0;
+let tim=0;
 
-var begin;
-var mark;
-var display;		
-var loop;
-var win;
-var txtWin;
+let begin;
+let mark;
+let display;		
+let loop;
+let win;
+let txtWin;
 
-var countd=5*1000; //waktu hitung mundur di set disini dalam milisecond 
-var countu=15*60*1000; //waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
+let countd=5*1000; //waktu hitung mundur di set disini dalam milisecond 
+let countu=15*60*1000; //waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
+
+let muted = false;
+
+//LIST TEAM
+let arrTeam = [];
 
 window.addEventListener("keyup", check, false);
 
@@ -58,11 +63,14 @@ function check(e)
 		case 87:
 			resume();
 			break;								//82 = W
+		case 77:
+			mute(muted = !muted);
+			break;								//77 = M
 	}
 }
 
 //konversi dari ms -> min, sec, ms
-function kalkulasi(conv)
+const kalkulasi = (conv) => 
 {
 	min=Math.floor(conv/60000);
 	sec=Math.floor((conv-min*60000)/1000);
@@ -74,7 +82,7 @@ function kalkulasi(conv)
 }
 
 //fungsi untuk hitung mundur. fungsi ini akan berhenti sampai waktu = 0
-function countdown()
+const countdown = () => 
 {
 	now=new Date().getTime();
 	counter=begin-now;
@@ -98,7 +106,7 @@ function countdown()
 }
 
 //fungsi untuk hitung mundur. fungsi ini akan berhenti sampai waktu = countu(waktu maks)
-function count()
+const count = () => 
 {
 	now=new Date().getTime();
 	counter=now-begin;
@@ -141,7 +149,7 @@ function count()
 }
 
 //fungsi ini untuk menambahkan "0" pada angka yang dibawah 10
-function checkTime(i)
+const checkTime = (i) => 
 {
 	if(i<10)
 	{
@@ -151,7 +159,7 @@ function checkTime(i)
 }
 
 //inisialisasi untuk hitung mundur
-function initCountDown() 
+const initCountDown = () => 
 {
 	if(stat[0]==1)
 	{
@@ -162,7 +170,7 @@ function initCountDown()
 }
 
 //inisialisasi untuk hitung maju
-function initCountUp() 
+const initCountUp = () => 
 {
 	if(stat[1]==1)
 	{
@@ -180,7 +188,7 @@ function initCountUp()
 }
 
 //fungsi pause
-function pause()
+const pause = () => 
 {
 	mark=new Date().getTime();
 	clearTimeout(loop);
@@ -200,7 +208,7 @@ function pause()
 }
 
 //fungsi untuk me resume ketika di pause
-function resume()
+const resume = () => 
 {
 	if(stat[3]==1)
 	{
@@ -221,7 +229,7 @@ function resume()
 }
 
 //fungsi untuk mereset dari awal
-function reset1()
+const reset1 = () => 
 {
 	if(stat[4]==1)
 	{
@@ -244,7 +252,7 @@ function reset1()
 }
 
 //fungsi untuk mengubah langsung hitung maju
-function reset2()
+const reset2 = () => 
 {
 	document.getElementById('mode').innerHTML="";
 	document.getElementById('disp').innerHTML="00:00";
@@ -262,7 +270,7 @@ function reset2()
 }
 
 //fungsi untuk mencetak waktu										
-function fin(team)
+const fin = (team) =>
 {
 	if(stat[5]==1)
 	{
@@ -286,4 +294,12 @@ function fin(team)
 		((win == 1) ? document.getElementById("winTeam"+team).setAttribute('class', 'winner') : document.getElementById("winTeam"+team).setAttribute('class', 'lose'));
 		document.getElementById("winTeam"+team).innerHTML=txtWin;
 	}
+}
+
+//fungsi untuk muted suara audio
+const mute = (enabled) => {
+	document.getElementById('prepare').muted = enabled;
+	document.getElementById('win').muted = enabled;
+	document.getElementById('start').muted = enabled;
+	document.getElementById('limit').muted = enabled;
 }

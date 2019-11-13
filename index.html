@@ -5,8 +5,7 @@
 
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="src/css/style.css" />
-	<script src="/src/js/stopwatch.js">
-	</script>
+	<script src="/src/js/stopwatch.js"></script>
 </head>
 <body>
 	<!--
@@ -22,9 +21,17 @@
 	<audio src="/src/sound/start.mp3" id="start" preload="auto"></audio>
 	<audio src="/src/sound/times_up.mp3" id="limit" preload="auto"></audio>
 	
-	<div class="bg-image"></div>
-	<div class="container">
+	<div class="bg-image1" id="bg-image1"></div>
+	<div class="bg-image2" id="bg-image2"></div>
+
+	<div class="btn-add">
+		<button class="btn" onclick="routeToPage('stopWatch')">Stopwatch</button>
+		<button class="btn" onclick="routeToPage('listTeam')">List Teams</button>
+	</div>
+
+	<div id="StopWatchPage" class="container">
 		<p id="mode" class="mode">PREPARATION TIME</p>
+
 		<div id="pagar" class="timer">
 			<div class="counter" id='disp'></div>
 			<div class="ms" id="dispMs"></div>
@@ -32,20 +39,42 @@
 		
 		<div class="box-team red">
 			<p id="winTeamA"></p>
+			<p id="teamA" class="team-name">SMAN 10 SAMARINDA</p>
 			<h5>RED TEAM</h5>
 			<p id="finA">00:00</p>
 		</div>
+
 		<div class="zone box-team">FINISH</div>
+
 		<div class="box-team blue">
 			<p id="winTeamB"></p>
+			<p id="teamB" class="team-name">SMKN 1 SAMARINDA</p>
 			<h5>BLUE TEAM</h5>
 			<p id="finB">00:00</p>
 		</div>
 	</div>
 
-	<script>
-		kalkulasi(countd);
-		document.getElementById('disp').innerHTML=min+":"+sec;
-		document.getElementById('dispMs').innerHTML=ms;
-	</script>
+	<div id="ListTeamPage" class="container">
+		<div class="list-team-page">
+			<h2>List Teams</h2>
+			<div class="team-content" id="teams">
+				<ul>
+					<li>TEAM A VS TEAM F</li>
+					<li>TEAM B VS TEAM G</li>
+					<li>TEAM C VS TEAM H</li>
+					<li>TEAM D VS TEAM I</li>
+					<li>TEAM E VS TEAM J</li>
+				</ul>
+				<ul>
+					<li>TEAM A VS TEAM F</li>
+					<li>TEAM B VS TEAM G</li>
+					<li>TEAM C VS TEAM H</li>
+					<li>TEAM D VS TEAM I</li>
+					<li>TEAM E VS TEAM J</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script src="/src/js/app.js"></script>
 </body>

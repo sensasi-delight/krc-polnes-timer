@@ -23,7 +23,7 @@ body
 	font-family:'digital-7';
 }
 
-.bg-image {
+.bg-image1 {
 	background:url(../img/bg1.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -38,6 +38,25 @@ body
 
 	opacity: .9;
 	filter: alpha(opacity=50);
+}
+
+.bg-image2 {
+	background:url(../img/bg2.jpg) repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: absolute;
+	z-index: -100;
+
+	opacity: .9;
+	filter: alpha(opacity=50);
+	
+	display: none;
 }
 	
 .container
@@ -122,4 +141,70 @@ body
 	font-size: 35px;
 	font-family: cyberspace;
 	color: whitesmoke;
+}
+
+.team-name {
+	font-size: 20px;
+	margin-bottom: 5px;
+	color: orange;
+}
+
+.btn-add {
+	font-size: 20px;
+	position: absolute;
+	top: 20px;
+	right: 40px;
+}
+
+.btn {
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid orange;
+	color: white;
+	padding: 16px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	font-family:'digital-7';
+}
+
+.btn:hover {
+	color: orange;
+	background-color: whitesmoke;
+	font-weight: bold;
+}
+
+/* PAGE SHOW/HIDE */
+#ListTeamPage {
+	display: none;
+}
+
+.list-team-page {
+	height: 100%;
+}
+
+.list-team-page h2 {
+	font-size: 60px;
+	color: orange;
+	text-decoration: underline;
+}
+
+.list-team-page .team-content {
+	margin: 40px 0;
+}
+
+.team-content ul {
+	display: inline-block;
+	margin: 0 50px;
+}
+
+.team-content ul li {
+	list-style-type: none;
+	margin-top: 30px;
+	font-size: 40px;
+	height: 40px;
+}
+
+.team-content ul li:hover {
+	color: orange;
 }
