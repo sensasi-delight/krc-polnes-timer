@@ -208,3 +208,7 @@ body
 .team-content ul li:hover {
 	color: orange;
 }
+
+#finA, #finB {
+	font-family: 'digital-7';
+}
