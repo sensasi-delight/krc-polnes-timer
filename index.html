@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Line Follower Robot Competition 2014</title>
+	<title id="title">KRC POLNES 2014</title>
 
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="src/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="src/css/font-awesome/css/font-awesome.min.css" />
 	<script src="/src/js/stopwatch.js"></script>
 </head>
 <body>
@@ -23,10 +24,12 @@
 	
 	<div class="bg-image1" id="bg-image1"></div>
 	<div class="bg-image2" id="bg-image2"></div>
+	<div class="bg-image3" id="bg-image3"></div>
 
 	<div class="btn-add">
-		<button class="btn" onclick="routeToPage('stopWatch')">Stopwatch</button>
-		<button class="btn" onclick="routeToPage('listTeam')">List Teams</button>
+		<button class="btn" onclick="routeToPage('stopWatch')"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Stopwatch</button>
+		<button class="btn" onclick="routeToPage('listTeam')"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp; List Teams</button>
+		<button class="btn" onclick="routeToPage('settings')"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp; Settings</button>
 	</div>
 
 	<div id="StopWatchPage" class="container">
@@ -65,13 +68,22 @@
 					<li>TEAM D VS TEAM I</li>
 					<li>TEAM E VS TEAM J</li>
 				</ul>
-				<ul>
-					<li>TEAM A VS TEAM F</li>
-					<li>TEAM B VS TEAM G</li>
-					<li>TEAM C VS TEAM H</li>
-					<li>TEAM D VS TEAM I</li>
-					<li>TEAM E VS TEAM J</li>
-				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="Settings" class="container">
+		<div class="settings">
+			<h2>Settings</h2>
+			<div>
+				<label for="prep_time">Set Preparation Time</label>
+				<input class="form-input" type="text" id="prep_time" placeholder="Set Preparation Time in seconds">
+				
+				<label for="Year">Set Competition Year</label>
+				<input class="form-input" type="text" id="Year" placeholder="Set Competition Year">
+				<br>
+				<br>
+				<button class="btn-save">Save</button>
 			</div>
 		</div>
 	</div>

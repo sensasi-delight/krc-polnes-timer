@@ -21,6 +21,7 @@ body
 {	
 	color:#fff;
 	font-family:'digital-7';
+	overflow: hidden;
 }
 
 .bg-image1 {
@@ -42,6 +43,25 @@ body
 
 .bg-image2 {
 	background:url(../img/bg2.jpg) repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: absolute;
+	z-index: -100;
+
+	opacity: .9;
+	filter: alpha(opacity=50);
+	
+	display: none;
+}
+
+.bg-image3 {
+	background:url(../img/bg3.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -156,7 +176,7 @@ body
 	right: 40px;
 }
 
-.btn {
+.btn-add .btn {
 	background-color: rgba(0, 0, 0, 0.3);
 	border: 1px solid orange;
 	color: white;
@@ -166,15 +186,18 @@ body
 	display: inline-block;
 	font-size: 18px;
 	font-family:'digital-7';
+	cursor: pointer;
 }
 
-.btn:hover {
+.btn-add .btn:hover {
 	color: orange;
 	background-color: whitesmoke;
 	font-weight: bold;
 }
 
 /* PAGE SHOW/HIDE */
+
+/* LIST PAGE */
 #ListTeamPage {
 	display: none;
 }
@@ -184,7 +207,7 @@ body
 }
 
 .list-team-page h2 {
-	font-size: 60px;
+	font-size: 45px;
 	color: orange;
 	text-decoration: underline;
 }
@@ -207,4 +230,50 @@ body
 
 .team-content ul li:hover {
 	color: orange;
+}
+
+/* SETTING PAGE */
+#settings {
+	display: none;
+}
+
+.settings h2 {
+	margin-bottom: 40px;
+	font-size: 45px;
+	text-decoration: underline;
+	color: orange;
+}
+
+.settings label {
+	font-size: 23px;
+	font-weight: bolder;
+	display: block;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.settings .form-input {
+	width: 300px;
+	height: 25px;
+	text-align: center;
+}
+
+.settings .btn-save {
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid orange;
+	color: white;
+	padding: 16px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	font-family:'digital-7';
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.settings .btn-save:hover {
+	color: orange;
+	background-color: whitesmoke;
+	font-weight: bold;
 }
