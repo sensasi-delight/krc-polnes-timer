@@ -27,3 +27,7 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
     # 13-11-2019
     1. Menambah fitur Mute Audio.
     2. Menambah halaman list team (sketsa).
+    ==========================================
+    # 23-11-2019
+    1. Merapihkan Tampilan.
+    2. Menambah halaman Settings.
