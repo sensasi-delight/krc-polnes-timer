@@ -60,13 +60,14 @@
 	<div id="ListTeamPage" class="container">
 		<div class="list-team-page">
 			<h2>List Teams</h2>
-			<div class="team-content" id="teams">
-				<ul>
+			<div class="form-input">
+				<input type="text" id="input-red-team" placeholder="Red Team"> <b style="font-size: 24px;color: orange;">VS</b>
+				<input type="text" id="input-blue-team" placeholder="Blue Team">
+				<button class="btn-add-team" onclick="storeTeams(null, 'ADD_TEAM')"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+			</div>
+			<div class="team-content">
+				<ul id="teams">
 					<li>TEAM A VS TEAM F</li>
-					<li>TEAM B VS TEAM G</li>
-					<li>TEAM C VS TEAM H</li>
-					<li>TEAM D VS TEAM I</li>
-					<li>TEAM E VS TEAM J</li>
 				</ul>
 			</div>
 		</div>
@@ -80,13 +81,16 @@
 				<input class="form-input" type="text" id="prep_time" placeholder="Set Preparation Time in seconds">
 				
 				<label for="Year">Set Competition Year</label>
-				<input class="form-input" type="text" id="Year" placeholder="Set Competition Year">
+				<input class="form-input" type="text" id="comp_year" placeholder="Set Competition Year">
 				<br>
 				<br>
-				<button class="btn-save">Save</button>
+				<button class="btn-save" onclick="setSettings()">Save</button>
 			</div>
 		</div>
 	</div>
 
+	<script src="/src/js/uuid.js"></script>
 	<script src="/src/js/app.js"></script>
+	<script src="/src/js/teamStorage.js"></script>
+	<script src="/src/js/settingStorage.js"></script>
 </body>

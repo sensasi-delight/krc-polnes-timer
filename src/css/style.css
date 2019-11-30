@@ -212,6 +212,30 @@ body
 	text-decoration: underline;
 }
 
+.list-team-page .form-input {
+	margin-top: 50px;
+}
+
+.list-team-page .form-input input {
+	padding: 8px 10px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.list-team-page .form-input .btn-add-team {
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid orange;
+	color: white;
+	padding: 10px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-family:'digital-7';
+	cursor: pointer;
+	margin-top: 20px;
+}
+
 .list-team-page .team-content {
 	margin: 40px 0;
 }

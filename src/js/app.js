@@ -2,10 +2,6 @@ kalkulasi(countd);
 document.getElementById('disp').innerHTML=min+":"+sec;
 document.getElementById('dispMs').innerHTML=ms;
 
-const handleChange = e => {
-
-}
-
 const routeToPage = (page) => {
     switch (page){
         case 'stopWatch':

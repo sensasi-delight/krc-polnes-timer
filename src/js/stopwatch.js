@@ -22,7 +22,9 @@ let loop;
 let win;
 let txtWin;
 
-let countd=5*1000; //waktu hitung mundur di set disini dalam milisecond 
+// let countd=5*1000; //waktu hitung mundur di set disini dalam milisecond 
+let prep_time = 0;
+let countd=prep_time*1000; //waktu hitung mundur di set disini dalam milisecond 
 let countu=15*60*1000; //waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
 
 let muted = false;
