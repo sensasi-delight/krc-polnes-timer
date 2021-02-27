@@ -2,7 +2,7 @@ const handleChange = e => {
 
 }
 
-kalkulasi(countd);
+formatTime(prepDuration);
 document.getElementById('disp').innerHTML=min+":"+sec;
 document.getElementById('dispMs').innerHTML=ms;
 
