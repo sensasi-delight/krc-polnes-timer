@@ -19,7 +19,7 @@ const showPage = (page, bgImage) => {
     const Settings = document.getElementById('settingPage');
     
     // ListTeamPage.style.display  = (page == 'list-team') ? 'block' : 'none';
-    StopWatchPage.style.display = (page == 'stopwatch') ? 'block' : 'none';
+    StopWatchPage.style.display = (page == 'stopwatch') ? 'flex' : 'none';
     Settings.style.display      = (page == 'setting') ? 'block' : 'none';
 
     //background
