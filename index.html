@@ -18,7 +18,7 @@
 
 	<div class="bg-image1" id="bg-image1"></div>
 	<div class="bg-image2" id="bg-image2"></div>
-	<div class="bg-image3" id="bg-image3"></div>
+	<!-- <div class="bg-image3" id="bg-image3"></div> -->
 
 	<div class="btn-add">
 		<button class="btn" onclick="routeToPage('stopWatch')">
@@ -36,7 +36,7 @@
 		<p id="mode" class="mode">PREPARATION TIME</p>
 
 		<div id="pagar" class="timer">
-			<div class="counter" id='disp'></div>
+			<div id='disp'></div>
 			<div class="ms" id="dispMs"></div>
 		</div>
 
@@ -114,7 +114,10 @@
 	<!-- <script src="assets/js/teamStorage.js"></script> -->
 	<script src="assets/js/stopwatch.js"></script>
 	<script>
+
 		toDisplayHtml(formatTime(prepDuration));
-		window.addEventListener("keyup", checkPressedKey, false);
+
+		//init page
+		routeToPage('stopWatch')
 	</script>
 </body>

@@ -30,7 +30,7 @@ body {
 	overflow: hidden;
 
 
-	display: flex;
+	display: none;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
@@ -53,11 +53,13 @@ body {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	z-index: -100;
 
-	opacity: 0.9;
-	filter: alpha(opacity=50);
+	/* opacity: 0.9; */
+	/* filter: alpha(opacity=50); */
+	display: none;
+
 }
 
 .bg-image2 {
@@ -70,11 +72,11 @@ body {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	z-index: -100;
 
-	opacity: 0.9;
-	filter: alpha(opacity=50);
+	/* opacity: 0.9; */
+	/* filter: alpha(opacity=50); */
 
 	display: none;
 }
@@ -108,6 +110,8 @@ body {
 }
 
 .mode {
+	letter-spacing: 0.1em;
+
 	color: orange;
 	font-family: cyberspace;
 	font-size: 20px;
@@ -125,9 +129,10 @@ body {
 	flex-wrap: nowrap;
 }
 
-.counter {
+#disp {
 	font-size: 10em;
-	width: 2.5em;
+	width: 2.2em;
+	text-align: left;
 	/* float:left; */
 	/* margin-left:80px; */
 	/* height: 7.5rem; */
@@ -136,6 +141,8 @@ body {
 
 .ms {
 	font-size: 5em;
+	text-align: right;
+
 	width: 1em;
 	margin-bottom: 0.2em;
 	/* margin-top:83px; */
@@ -181,9 +188,11 @@ body {
 	font-size: 35px;
 	font-family: cyberspace;
 	color: orange;
+	letter-spacing: 0.2em;
 }
 
 .winner {
+	letter-spacing: 0.2em;
 	margin-bottom: 30px;
 	font-size: 35px;
 	font-family: cyberspace;
@@ -191,6 +200,8 @@ body {
 }
 
 .lose {
+	letter-spacing: 0.2em;
+
 	margin-bottom: 30px;
 	font-size: 35px;
 	font-family: cyberspace;

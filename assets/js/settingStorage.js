@@ -37,19 +37,25 @@ function getSetting()
 
 function setSettings()
 {
+	//GET INPUT VALUE
+	//
+	//
+    // const inputLogo     = document.getElementById('logo');
     const inputPrepTime = document.getElementById('prep_time').value;
     const inputCompYear = document.getElementById('comp_year').value;
     const inputRaceDuration = document.getElementById('race_duration').value;
-    const inputLogo     = document.getElementById('logo');
+	const aTeam = document.getElementById('a_team_input').value
+    const bTeam = document.getElementById('b_team_input').value
     
-    let settings = localStorage.getItem('krc_timer_setting');
-    settings = settings ? JSON.parse(settings) : {};
+	const setting = {
+		prep_time: inputPrepTime || 5,
+		comp_year: inputCompYear || new Date().getFullYear(),
+		race_duration: inputRaceDuration || 15,
+		team_a_name: aTeam || 'Tim A',
+		team_b_name: bTeam || 'Tim B'
+	}
 
-    settings.prep_time = (inputPrepTime.length == 0) ? 5 : inputPrepTime;
-    settings.comp_year = (inputCompYear.length == 0) ? new Date().getFullYear() : inputCompYear;
-    settings.race_duration = (inputRaceDuration.length == 0) ? 15 : inputRaceDuration;
-
-    localStorage.setItem('krc_timer_setting', JSON.stringify(settings));
+    localStorage.setItem('krc_timer_setting', JSON.stringify(setting))
 
     window.location.reload();
 }
