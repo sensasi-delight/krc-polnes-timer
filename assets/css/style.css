@@ -9,23 +9,42 @@
 }
 
 * {
-	margin:0;
-	padding:0
+	margin: 0;
+	padding: 0;
 }
 
-.clear{
-	clear:both;
+.clear {
+	clear: both;
 }
 
-body
-{	
-	color:#fff;
-	font-family:'digital-7';
+body {
+	background-color: black;
+	color: #fff;
+	font-family: "digital-7";
+}
+
+#StopWatchPage {
+
+	padding: 0;
+	margin: 0;
 	overflow: hidden;
+
+
+	display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    height: 100vh;
+    align-content: center;
+}
+
+#settingPage {
+	display: none;
 }
 
 .bg-image1 {
-	background:url(../img/bg1.jpg) repeat center center fixed;
+	background: url(../img/bg1.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -37,12 +56,12 @@ body
 	position: absolute;
 	z-index: -100;
 
-	opacity: .9;
+	opacity: 0.9;
 	filter: alpha(opacity=50);
 }
 
 .bg-image2 {
-	background:url(../img/bg2.jpg) repeat center center fixed;
+	background: url(../img/bg2.jpg) repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -54,68 +73,86 @@ body
 	position: absolute;
 	z-index: -100;
 
-	opacity: .9;
+	opacity: 0.9;
 	filter: alpha(opacity=50);
-	
+
 	display: none;
 }
 
 .bg-image3 {
-	background:url(../img/bg3.jpg) repeat center center fixed;
+	background: url(../img/bg3.jpg);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	/* height: 100vh; */
 	top: 0;
 	bottom: 0;
 	right: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	z-index: -100;
 
-	opacity: .9;
-	filter: alpha(opacity=50);
-	
+	/* opacity: .9; */
+	/* filter: alpha(opacity=50); */
+
 	display: none;
 }
-	
-.container
-{
-	margin-top: 10rem;
-    padding-top: 20px;
+
+.container {
+	margin-top: 13em;
 	text-align: center;
+	padding-bottom: 5em;
 }
 
 .mode {
 	color: orange;
-	font-family:cyberspace;
-	font-size:20px;
-	text-align:center;
+	font-family: cyberspace;
+	font-size: 20px;
+	text-align: center;
 	margin-bottom: 20px;
 }
 
-.timer{
-	margin:0 auto;
-	width:30rem;
-	height: 9rem;
-	/* background-color: rgba(0, 0, 0, 0.3); */
+.timer {
+	/* margin-left: 26rem; */
+	display: flex;
+	align-items: flex-end;
+	flex-direction: row;
+	align-content: flex-end;
+	justify-content: center;
+	flex-wrap: nowrap;
 }
 
-.counter
-{
-	font-size:150px;
-	float:left;
-	margin-left:80px;
-	height: 7.5rem;
-	margin-top: 10px;
+.counter {
+	font-size: 10em;
+	width: 2.5em;
+	/* float:left; */
+	/* margin-left:80px; */
+	/* height: 7.5rem; */
+	/* margin-top: 10px; */
 }
 
-.ms
-{
-	font-size:50px;
-	margin-top:83px;
-	margin-left:10px;
-	float:left;
+.ms {
+	font-size: 5em;
+	width: 1em;
+	margin-bottom: 0.2em;
+	/* margin-top:83px; */
+	/* margin-left:0.2em; */
+	/* float:left; */
+}
+
+.box-container {
+	letter-spacing: 0.1em;
+	/* overflow: hidden; */
+	margin-top: 4em;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	align-content: center;
 }
 
 .box-team {
@@ -123,27 +160,24 @@ body
 	font-size: 40px;
 	text-align: center;
 	display: inline-block;
-	margin: 60px;
 }
 
-.red, .blue {
+.red,
+.blue {
 	font-weight: 100;
 }
 
 .blue h5 {
 	font-weight: 100;
 	color: blue;
-	margin-bottom: 20px;
 }
 
 .red h5 {
 	font-weight: 100;
 	color: red;
-	margin-bottom: 20px;
 }
 
-.zone
-{
+.zone {
 	font-size: 35px;
 	font-family: cyberspace;
 	color: orange;
@@ -185,7 +219,7 @@ body
 	text-decoration: none;
 	display: inline-block;
 	font-size: 18px;
-	font-family:'digital-7';
+	font-family: "digital-7";
 	cursor: pointer;
 }
 
@@ -231,7 +265,7 @@ body
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	font-family:'digital-7';
+	font-family: "digital-7";
 	cursor: pointer;
 	margin-top: 20px;
 }
@@ -256,9 +290,10 @@ body
 	color: orange;
 }
 
-#finA, #finB {
-	font-family: 'digital-7';
-/* SETTING PAGE */
+#finA,
+#finB {
+	font-family: "digital-7";
+	/* SETTING PAGE */
 }
 
 #settings {
@@ -295,7 +330,7 @@ body
 	text-decoration: none;
 	display: inline-block;
 	font-size: 18px;
-	font-family:'digital-7';
+	font-family: "digital-7";
 	cursor: pointer;
 	margin-top: 20px;
 }

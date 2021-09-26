@@ -8,10 +8,11 @@
 Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KRC POLNES TIMER : 
     
 * **spasi** : untuk memulai hitungan mundur dalam mode persiapan.
-* **1** : untuk melakukan reset1.
-* **2** : untuk melakukan reset2.
-* **q** : untuk pause.
-* **w** : untuk resume.
+* **r** : untuk melakukan reset timer.
+<!-- * **1** : untuk melakukan reset1. -->
+<!-- * **2** : untuk melakukan reset2. -->
+<!-- * **q** : untuk pause. -->
+<!-- * **w** : untuk resume. -->
 * **a** : untuk menyimpan waktu ke team A.
 * **b** : untuk menyimpan waktu ke team B.
 * **m** : untuk turn on/off (Aktif/Tidak Aktif) Audio.
@@ -31,3 +32,6 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
     # 23-11-2019
     1. Merapihkan Tampilan.
     2. Menambah halaman Settings.
+	==========================================
+    # 2019-09-26
+    Major Update pokoknya

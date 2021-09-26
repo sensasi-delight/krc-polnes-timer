@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title id="title">KRC POLNES 2014</title>
 	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
@@ -8,20 +9,27 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome/css/font-awesome.min.css" />
 
 </head>
+
 <body>
 	<audio src="assets/sound/prepare.mp3" id="prepare" preload="auto"></audio>
 	<audio src="assets/sound/win.mp3" id="win" preload="auto"></audio>
 	<audio src="assets/sound/start.mp3" id="start" preload="auto"></audio>
 	<audio src="assets/sound/times_up.mp3" id="limit" preload="auto"></audio>
-	
+
 	<div class="bg-image1" id="bg-image1"></div>
 	<div class="bg-image2" id="bg-image2"></div>
 	<div class="bg-image3" id="bg-image3"></div>
 
 	<div class="btn-add">
-		<button class="btn" onclick="routeToPage('stopWatch')"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Stopwatch</button>
-		<button class="btn" onclick="routeToPage('listTeam')"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp; List Teams</button>
-		<button class="btn" onclick="routeToPage('settings')"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp; Settings</button>
+		<button class="btn" onclick="routeToPage('stopWatch')">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Display
+		</button>
+		<!-- <button class="btn" onclick="routeToPage('listTeam')">
+			<i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp; List Teams
+		</button> -->
+		<button class="btn" onclick="routeToPage('settings')">
+			<i class="fa fa-cog" aria-hidden="true"></i>
+		</button>
 	</div>
 
 	<div id="StopWatchPage" class="container">
@@ -31,31 +39,40 @@
 			<div class="counter" id='disp'></div>
 			<div class="ms" id="dispMs"></div>
 		</div>
-		
-		<div class="box-team red">
-			<p id="winTeamA"></p>
-			<p id="teamA" class="team-name">SMAN 10 SAMARINDA</p>
-			<h5>RED TEAM</h5>
-			<p id="finA">00:00</p>
+
+		<div style="clear: both;"></div>
+
+		<div class="box-container">
+			<div class="box-team red">
+				<h5>RED TEAM</h5>
+				<p id="team_a_name" class="team-name"></p>
+				<p id="finA"></p>
+				<p id="winTeamA"></p>
+			</div>
+
+			<div class="zone box-team">FINISH</div>
+
+			<div class="box-team blue">
+				<h5>BLUE TEAM</h5>
+				<p id="team_b_name" class="team-name"></p>
+				<p id="finB"></p>
+				<p id="winTeamB"></p>
+			</div>
 		</div>
 
-		<div class="zone box-team">FINISH</div>
 
-		<div class="box-team blue">
-			<p id="winTeamB"></p>
-			<p id="teamB" class="team-name">SMKN 1 SAMARINDA</p>
-			<h5>BLUE TEAM</h5>
-			<p id="finB">00:00</p>
-		</div>
 	</div>
 
-	<div id="ListTeamPage" class="container">
+	<!-- <div id="ListTeamPage" class="container">
 		<div class="list-team-page">
 			<h2>List Teams</h2>
 			<div class="form-input">
-				<input type="text" id="input-red-team" placeholder="Red Team"> <b style="font-size: 24px;color: orange;">VS</b>
+				<input type="text" id="input-red-team" placeholder="Red Team"> <b
+					style="font-size: 24px;color: orange;">VS</b>
 				<input type="text" id="input-blue-team" placeholder="Blue Team">
-				<button class="btn-add-team" onclick="storeTeams(null, 'ADD_TEAM')"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+				<button class="btn-add-team" onclick="storeTeams(null, 'ADD_TEAM')">
+					<i class="fa fa-plus-circle" aria-hidden="true"></i>
+				</button>
 			</div>
 			<div class="team-content">
 				<ul id="teams">
@@ -63,17 +80,26 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-	
-	<div id="Settings" class="container">
+	</div> -->
+
+	<div id="settingPage" class="container">
 		<div class="settings">
 			<h2>Settings</h2>
 			<div>
-				<label for="prep_time">Set Preparation Time</label>
-				<input class="form-input" type="text" id="prep_time" placeholder="Set Preparation Time in seconds">
-				
-				<label for="Year">Set Competition Year</label>
-				<input class="form-input" type="text" id="comp_year" placeholder="Set Competition Year">
+				<label for="race_duration">Race Duration</label>
+				<input class="form-input" type="text" id="race_duration" placeholder="seconds">
+
+				<label for="prep_time">Preparation Duration</label>
+				<input class="form-input" type="text" id="prep_time" placeholder="seconds">
+
+				<label for="Year">Competition Year</label>
+				<input class="form-input" type="text" id="comp_year" placeholder="Year">
+
+				<label for="a_team_input">A Team</label>
+				<input class="form-input" type="text" id="a_team_input" placeholder="Team Name">
+
+				<label for="b_team_input">B Team</label>
+				<input class="form-input" type="text" id="b_team_input" placeholder="Team Name">
 				<br>
 				<br>
 				<button class="btn-save" onclick="setSettings()">Save</button>
@@ -83,10 +109,10 @@
 
 	<script src="assets/js/uuid.js"></script>
 	<!-- <script src="assets/js/app.js"></script> -->
-	<script src="assets/js/stopwatch.js"></script>
-	<script src="assets/js/pageTransition.js"></script>
-	<script src="assets/js/teamStorage.js"></script>
 	<script src="assets/js/settingStorage.js"></script>
+	<script src="assets/js/pageTransition.js"></script>
+	<!-- <script src="assets/js/teamStorage.js"></script> -->
+	<script src="assets/js/stopwatch.js"></script>
 	<script>
 		toDisplayHtml(formatTime(prepDuration));
 		window.addEventListener("keyup", checkPressedKey, false);

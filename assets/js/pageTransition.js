@@ -1,19 +1,11 @@
-const handleChange = e => {
-
-}
-
-formatTime(prepDuration);
-document.getElementById('disp').innerHTML=min+":"+sec;
-document.getElementById('dispMs').innerHTML=ms;
-
 const routeToPage = (page) => {
     switch (page){
         case 'stopWatch':
             showPage('stopwatch', 'bgImage1');
             break;
-        case 'listTeam':
-            showPage('list-team', 'bgImage2');
-            break;
+        // case 'listTeam':
+        //     showPage('list-team', 'bgImage2');
+        //     break;
         case 'settings':
             showPage('setting', 'bgImage3');
             break;
@@ -22,11 +14,11 @@ const routeToPage = (page) => {
 
 const showPage = (page, bgImage) => {
     //page
-    const ListTeamPage = document.getElementById('ListTeamPage');
+    // const ListTeamPage = document.getElementById('ListTeamPage');
     const StopWatchPage = document.getElementById('StopWatchPage');
-    const Settings = document.getElementById('Settings');
+    const Settings = document.getElementById('settingPage');
     
-    ListTeamPage.style.display  = (page == 'list-team') ? 'block' : 'none';
+    // ListTeamPage.style.display  = (page == 'list-team') ? 'block' : 'none';
     StopWatchPage.style.display = (page == 'stopwatch') ? 'block' : 'none';
     Settings.style.display      = (page == 'setting') ? 'block' : 'none';
 
