@@ -19,6 +19,9 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
 
 ## Perubahan
 
+    # 2019-09-26
+    Major Update pokoknya
+    =========================================
     # 11-11-2019
     1. Merapihkan struktur file.
     2. Import font kedalam css file.
@@ -33,5 +36,6 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
     1. Merapihkan Tampilan.
     2. Menambah halaman Settings.
 	==========================================
-    # 2019-09-26
-    Major Update pokoknya
+    # 28-09-2021
+    1. Menambah Key Mapping Information.
+	==========================================
