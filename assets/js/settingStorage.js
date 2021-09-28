@@ -1,7 +1,7 @@
 const defaultSetting = {
 	'prep_time': 5, //second
 	'race_duration': 15, //second
-	'compName': 'Race Stopwatch App V1.9 ' + new Date().getFullYear(),
+	'compName': 'Race Stopwatch App V1.9 ',
 	'team_a_name': 'Tim A',
 	'team_b_name': 'Tim B',
 	'midText': 'VS / Laps / Checkpoint',
