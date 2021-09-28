@@ -127,11 +127,11 @@
 
 
 		<div>
-			<label for="race_duration">Race Duration</label>
-			<input class="form-input" type="text" id="race_duration" placeholder="seconds">
+			<label for="race_duration">Race Duration (sec)</label>
+			<input class="form-input" type="number" id="race_duration" placeholder="seconds">
 
-			<label for="prep_time">Preparation Duration</label>
-			<input class="form-input" type="text" id="prep_time" placeholder="seconds">
+			<label for="prep_time">Preparation Duration (sec)</label>
+			<input class="form-input" type="number" id="prep_time" placeholder="seconds">
 
 			<label for="Year">Competition Year</label>
 			<input class="form-input" type="text" id="comp_year" placeholder="Year">
@@ -146,10 +146,10 @@
 			<input class="form-input" type="text" id="midTextInput" placeholder="Middle Text">
 
 			<label for="nLapInput">Number of Lap</label>
-			<input class="form-input" type="text" id="nLapInput" placeholder="Number of Lap">
+			<input class="form-input" type="number" min="1" id="nLapInput" placeholder="Number of Lap">
 			<br>
 			<br>
-			<button class="btn-save" onclick="setSettings()">Save</button>
+			<button class="btn" style="margin-top: 1rem; font-size: 2rem;" onclick="setSettings()">Save</button>
 		</div>
 	</div>
 
@@ -171,7 +171,6 @@
 
 		<div style="margin: auto; width: 50%; font-family: 'digital-7'; color:whitesmoke; margin-bottom: 4rem; padding-top: 1rem;">
 			<table border="1">
-				
 				<tr>
 					<td width="4%" style="padding: 10px; text-align: center;">No.</td>
 					<td width="20%">Key</td>
@@ -199,26 +198,26 @@
 				</tr>
 				<tr>
 					<td width="4%" style="padding: 10px; text-align: center;">5.</td>
-					<td width="20%">m</td>
+					<td width="20%">o</td>
 					<td>Mute/unmute sound FX</td>
 				</tr>
 				<tr>
-					<td width="4%" style="padding: 10px; text-align: center;">5.</td>
-					<td width="20%">m</td>
+					<td width="4%" style="padding: 10px; text-align: center;">6.</td>
+					<td width="20%">p</td>
 					<td>Mute/unmute background music</td>
 				</tr>
 				<tr>
-					<td width="4%" style="padding: 10px; text-align: center;">6.</td>
+					<td width="4%" style="padding: 10px; text-align: center;">7.</td>
 					<td width="20%">F11</td>
 					<td>Fullscreen/Exit Fullscreen</td>
 				</tr>
 				<tr>
-					<td width="4%" style="padding: 10px; text-align: center;">7.</td>
+					<td width="4%" style="padding: 10px; text-align: center;">8.</td>
 					<td width="20%">CTRL +</td>
 					<td>Zoom In</td>
 				</tr>
 				<tr>
-					<td width="4%" style="padding: 10px; text-align: center;">5.</td>
+					<td width="4%" style="padding: 10px; text-align: center;">9.</td>
 					<td width="20%">CRTL -</td>
 					<td>Zoom Out</td>
 				</tr>
