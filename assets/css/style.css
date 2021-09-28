@@ -31,19 +31,21 @@ body {
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
+    height: 100vh;
+    /* flex-wrap: nowrap; */
 
 
-	display: none;
+	/* display: none;
     flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: center;
     align-items: stretch;
-    height: 100vh;
-    align-content: center;
+    align-content: center; */
 }
 
 #settingPage {
 	display: none;
+	font-family: 'digital-7';
+	padding-top: 6em;
 }
 
 .bg-image1 {
@@ -129,9 +131,15 @@ body {
 }
 
 .container {
-	/* margin-top: 13em; */
+	padding-top: 4rem;
 	text-align: center;
 	/* padding-bottom: 5em; */
+
+	display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
 }
 
 .laps-container {
@@ -148,6 +156,10 @@ body {
 	padding-top: 0.3rem;
 	font-size: 1.5rem;
 	transform: scaleY(1.2);
+	-webkit-transform: scaleY(1.2); /* Safari and Chrome */
+	-moz-transform: scaleY(1.2); /* Firefox */
+	-ms-transform: scaleY(1.2); /* IE 9+ */
+	-o-transform: scaleY(1.2); /* Opera */
 }
 
 .laps-no > p {
@@ -201,61 +213,46 @@ body {
 
 .box-team {
 	transform: scaleY(1.1);
+	-webkit-transform: scaleY(1.1); /* Safari and Chrome */
+	-moz-transform: scaleY(1.1); /* Firefox */
+	-ms-transform: scaleY(1.1); /* IE 9+ */
+	-o-transform: scaleY(1.1); /* Opera */
 	letter-spacing: 5pt;
-
-	/* padding-left: 5rem; */
-	/* text-align: left; */
 }
 
 .red-colored {
 	color: red;
 }
 
-
 .blue-colored {
 	color: blue;
 }
 
-
-.zone {
-	font-size: 35px;
-	font-family: cyberspace;
-}
-
-.winner {
-	letter-spacing: 0.2em;
-	margin-bottom: 30px;
-	font-size: 35px;
-	font-family: cyberspace;
-}
-
-.lose {
-	letter-spacing: 0.2em;
-
-	margin-bottom: 30px;
-	font-size: 35px;
-	font-family: cyberspace;
-	color: whitesmoke;
-}
 
 .team-name {
 	font-size: 1.8em;
 	margin-bottom: 5px;
 }
 
-.btn-add {
-	font-size: 2em;
-	position: absolute;
+.left-btn-container {
+	padding: 1em;
+	position: fixed;
+	/* right: 0.5; */
+}
+
+.right-btn-container {
+	padding: 1em;
+
+	position: fixed;
 	right: 0.5em;
 }
 
-/* .btn-add */
 .btn {
 	background-color: unset;
 	border: 0;
 	color: white;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 1.2rem;
 	font-family: "digital-7";
 	cursor: pointer;
 }
@@ -320,39 +317,33 @@ body {
 }
 
 .team-content ul li:hover {
+	
 	color: orange;
 }
 
-#finA,
-#finB {
-	font-family: "digital-7";
-	/* SETTING PAGE */
+.page-title {
+	font-family: 'cyberspace';
+	font-size: 2rem;
+	padding-bottom: 2rem;
 }
 
-#settings {
-	display: none;
-}
-
-.settings h2 {
-	margin-bottom: 40px;
-	font-size: 45px;
-	text-decoration: underline;
-}
-
-.settings label {
-	font-size: 23px;
-	font-weight: bolder;
+label {
+	/* font-size: 23px; */
+	/* font-weight: bolder; */
 	display: block;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	margin-bottom: 0.1rem;
+	margin-top: 1rem;
 }
 
-.settings .form-input {
-	width: 300px;
-	height: 25px;
+.form-input {
+	font-size: 1.2rem;
+	font-family: 'cyberspace';
+
+	/* width: 300px; */
+	/* height: 25px; */
 	text-align: center;
 }
-
+/* 
 .settings .btn-save {
 	background-color: rgba(0, 0, 0, 0.3);
 	border: 1px solid orange;
@@ -365,9 +356,9 @@ body {
 	font-family: "digital-7";
 	cursor: pointer;
 	margin-top: 20px;
-}
+} */
 
-.settings .btn-save:hover {
+.btn-save:hover {
 	color: orange;
 	background-color: whitesmoke;
 	font-weight: bold;

@@ -19,8 +19,6 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
 
 ## Perubahan
 
-    # 2019-09-26
-    Major Update pokoknya
     =========================================
     # 11-11-2019
     1. Merapihkan struktur file.
@@ -38,4 +36,10 @@ Berikut ini terdapat beberapa tombol yang digunakan untuk mengoprasikan timer KR
 	==========================================
     # 28-09-2021
     1. Menambah Key Mapping Information.
+	==========================================
+	# 29-09-2021
+    1. SFX + BGM.
+    2. Lap & Setting.
+    3. credit on information page.
+	4. major css update.
 	==========================================

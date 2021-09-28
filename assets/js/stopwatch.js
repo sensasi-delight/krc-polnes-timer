@@ -1,4 +1,35 @@
-const setting = getSetting()
+const sfx = {
+	checkpoint: document.getElementById("checkpointSound"),
+	raceEndAudio: document.getElementById("raceEndAudio"),
+	timesUpAudio: document.getElementById("timesUpAudio"),
+	prepare: document.getElementById("prepare"),
+	start: document.getElementById("start"),
+	mainThemeAudio: document.getElementById('mainThemeAudio'),
+	applauseAudio: document.getElementById('applauseAudio'),
+}
+
+sfx.applauseAudio.volume = 0.8
+
+//fungsi untuk muted suara audio
+const toggleBgm = (isMuted) => {
+	sfx.mainThemeAudio.muted = isMuted
+}
+
+const toggleSfx = (isMuted) => {
+	sfx.checkpoint.muted = isMuted
+	sfx.raceEndAudio.muted = isMuted
+	sfx.timesUpAudio.muted = isMuted
+	sfx.start.muted = isMuted
+	sfx.applauseAudio.muted = isMuted
+	sfx.prepare.muted = isMuted
+}
+
+
+
+
+
+
+let setting = getSetting()
 
 let isRaceBegin = false;
 let isAFinished = false;
@@ -13,7 +44,6 @@ let prepDuration = setting.prep_time * 1000;
 let raceDuration = setting.race_duration * 1000;
 
 
-let isMuted = false;
 let beginTime = undefined
 
 const teamTimes = {
@@ -21,17 +51,10 @@ const teamTimes = {
 	b: []
 }
 
-const sfx = {
-	checkpoint: document.getElementById("checkpointSound"),
-	raceEndAudio: document.getElementById("raceEndAudio"),
-	timesUpAudio: document.getElementById("timesUpAudio"),
-	prepare: document.getElementById("prepare"),
-	start: document.getElementById("start"),
-	mainThemeAudio: document.getElementById('mainThemeAudio'),
-	applauseAudio: document.getElementById('applauseAudio'),
-}
 
-sfx.applauseAudio.volume = 0.8
+
+toggleSfx(setting.isSfxEnabled)
+toggleBgm(setting.isBgmEnabled)
 
 
 function checkPressedKey(e) {
@@ -58,8 +81,14 @@ function checkPressedKey(e) {
 			}
 			break
 
-		case 77: // == M
-			mute(isMuted = !isMuted)
+		case 79: // == o
+			toggleSfx(setting.isSfxEnabled = !setting.isSfxEnabled)
+			localStorage.setItem('krc_timer_setting', JSON.stringify(setting))
+			break
+
+		case 80: // == p
+			toggleBgm(setting.isBgmEnabled = !setting.isBgmEnabled)
+			localStorage.setItem('krc_timer_setting', JSON.stringify(setting))
 			break
 
 		case 82: //82 = R
@@ -208,29 +237,12 @@ const teamReachFinish = (teamName) => {
 	}
 }
 
-//fungsi untuk muted suara audio
-const mute = (isMuted) => {
-	document.getElementById('prepare').muted = isMuted
-	raceEndAudio.muted = isMuted
-	document.getElementById('start').muted = isMuted
-	document.getElementById('limit').muted = isMuted
-}
-
-
 //for displaying main timer
 const toDisplayHtml = (formatedTime) => {
 	document.getElementById('disp').innerHTML = formatedTime[0] + ":" + formatedTime[1];
 	document.getElementById('dispMs').innerHTML = formatedTime[2];
 }
 
-//for displaying team time record
-const toTeamDisplayHtml = (team) => {
-	// let minsec = document.getElementById('disp').innerHTML
-	// let ms = document.getElementById('dispMs').innerHTML
-
-
-	// document.getElementById("fin" + team).innerHTML = minsec + '.' + ms
-}
 
 //formating from number ms to min, sec, ms
 const msToArrTime = (nMs) => {

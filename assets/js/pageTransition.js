@@ -10,9 +10,9 @@ const routeToPage = (page) => {
     //     showPage('list-team', 'bgImage2');
     //     break;
 
-    case "keyMapping":
+    case "informationPage":
       window.removeEventListener("keyup", checkPressedKey);
-      showPage("keyMapping", "bgImage4");
+      showPage("informationPage", "bgImage4");
       break;
 
     case "settings":
@@ -27,12 +27,12 @@ const showPage = (page, bgImage) => {
   // const ListTeamPage = document.getElementById('ListTeamPage');
   const StopWatchPage = document.getElementById("StopWatchPage");
   const Settings = document.getElementById("settingPage");
-  const KeyMappingPage = document.getElementById("KeyMappingPage");
+  const informationPage = document.getElementById("informationPage");
 
   // ListTeamPage.style.display  = (page == 'list-team') ? 'block' : 'none';
   StopWatchPage.style.display = page == "stopwatch" ? "flex" : "none";
-  Settings.style.display = page == "setting" ? "block" : "none";
-  KeyMappingPage.style.display = page == "keyMapping" ? "block" : "none";
+  Settings.style.display = page == "setting" ? "flex" : "none";
+  informationPage.style.display = page == "informationPage" ? "flex" : "none";
 
   //background
   const bgImage1 = document.getElementById("bg-image1");

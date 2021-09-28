@@ -6,7 +6,8 @@ const defaultSetting = {
 	'team_b_name': 'Tim B',
 	'midText': 'VS / Laps / Checkpoint',
 	'nLap': 3,
-	'isBgmEnabled': true
+	'isBgmEnabled': true,
+	'isSfxEnabled': true
 };
 
 
