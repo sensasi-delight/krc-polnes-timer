@@ -23,6 +23,7 @@
 	<div class="bg-image1" id="bg-image1"></div>
 	<div class="bg-image2" id="bg-image2"></div>
 	<!-- <div class="bg-image3" id="bg-image3"></div> -->
+	<div class="bg-image4" id="bg-image4"></div>
 
 	<div class="btn-add">
 		<button class="btn" onclick="routeToPage('stopWatch')">
@@ -31,11 +32,15 @@
 		<!-- <button class="btn" onclick="routeToPage('listTeam')">
 			<i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp; List Teams
 		</button> -->
+		<button class="btn" onclick="routeToPage('keyMapping')">
+			<i class="fa fa-keyboard-o" aria-hidden="true"></i>&nbsp; Key Mapping
+		</button>
 		<button class="btn" onclick="routeToPage('settings')">
 			<i class="fa fa-cog" aria-hidden="true"></i>
 		</button>
 	</div>
 
+	<!-- DISPLAY PAGE-->
 	<div id="StopWatchPage" class="container">
 		<p id="mode" class="mode">PREPARATION TIME</p>
 
@@ -71,8 +76,6 @@
 			<div id="bTimeLap" class="time-lap">
 			</div>
 		</div>
-
-
 	</div>
 
 
@@ -97,6 +100,7 @@
 		</div>
 	</div> -->
 
+	<!-- SETTINGS PAGE -->
 	<div id="settingPage" class="container">
 		<div class="settings">
 			<h2>Settings</h2>
@@ -125,6 +129,46 @@
 				<br>
 				<button class="btn-save" onclick="setSettings()">Save</button>
 			</div>
+		</div>
+	</div>
+
+	<!-- DISPLAY PAGE-->
+	<div id="KeyMappingPage" class="container">
+		<p id="mode" class="mode">Key Mapping Information</p>
+
+		<div style="margin: auto; width: 50%;">
+			<table border="1">
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">No.</td>
+					<td width="20%">Key</td>
+					<td>Function</td>
+				</tr>
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">1.</td>
+					<td width="20%">spasi</td>
+					<td>Starting the countdown in setup mode.</td>
+				</tr>
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">2.</td>
+					<td width="20%">r</td>
+					<td>Reset Timer.</td>
+				</tr>
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">3.</td>
+					<td width="20%">a</td>
+					<td>Save time for team A.</td>
+				</tr>
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">4.</td>
+					<td width="20%">b</td>
+					<td>Save time for team B.</td>
+				</tr>
+				<tr>
+					<td width="4%" style="padding: 10px; text-align: center;">5.</td>
+					<td width="20%">m</td>
+					<td>Turn on/off (Aktif/Tidak Aktif) Audio.</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 

@@ -106,6 +106,28 @@ body {
 	display: none;
 }
 
+.bg-image4 {
+	background: url(../img/bg4.jpg);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	/* height: 100vh; */
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: fixed;
+	z-index: -100;
+
+	/* opacity: .9; */
+	/* filter: alpha(opacity=50); */
+
+	display: none;
+}
+
 .container {
 	/* margin-top: 13em; */
 	text-align: center;
