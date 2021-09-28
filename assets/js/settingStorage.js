@@ -1,7 +1,7 @@
 const defaultSetting = {
 	'prep_time': 5, //second
 	'race_duration': 15, //second
-	'comp_year': new Date().getFullYear(),
+	'compName': 'Race Stopwatch App V1.9 ' + new Date().getFullYear(),
 	'team_a_name': 'Tim A',
 	'team_b_name': 'Tim B',
 	'midText': 'VS / Laps / Checkpoint',
@@ -11,8 +11,8 @@ const defaultSetting = {
 };
 
 
+const compNameInput = document.getElementById('compNameInput')
 const inputPrepTime = document.getElementById('prep_time')
-const inputCompYear = document.getElementById('comp_year')
 const inputRaceDuration = document.getElementById('race_duration')
 const aTeam = document.getElementById('a_team_input')
 const bTeam = document.getElementById('b_team_input')
@@ -32,7 +32,7 @@ function getSetting() {
 	const settings = JSON.parse(localStorage.getItem('krc_timer_setting'));
 
 	//set
-	document.getElementById('title').innerHTML = `KRC POLNES ${settings.comp_year}`;
+	document.getElementById('title').innerHTML = settings.compName;
 	document.getElementById('midText').innerHTML = settings.midText;
 	document.getElementById('team_a_name').innerHTML = settings.team_a_name;
 	document.getElementById('team_b_name').innerHTML = settings.team_b_name;
@@ -40,7 +40,7 @@ function getSetting() {
 	//
 
 	inputPrepTime.value = settings.prep_time
-	inputCompYear.value = settings.comp_year
+	compNameInput.value = settings.compName
 	inputRaceDuration.value = settings.race_duration
 	aTeam.value = settings.team_a_name
 	bTeam.value = settings.team_b_name
@@ -54,7 +54,7 @@ function getSetting() {
 function setSettings() {
 	const setting = {
 		prep_time: inputPrepTime ? inputPrepTime.value : defaultSetting.prep_time,
-		comp_year: inputCompYear ? inputCompYear.value : defaultSetting.comp_year,
+		compName: compNameInput ? compNameInput.value : defaultSetting.compName,
 		race_duration: inputRaceDuration ? inputRaceDuration.value : defaultSetting.race_duration,
 		team_a_name: aTeam ? aTeam.value : defaultSetting.team_a_name,
 		team_b_name: bTeam ? bTeam.value : defaultSetting.team_b_name,

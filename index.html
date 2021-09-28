@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title id="title">KRC POLNES TIMER</title>
+	<title id="title">Race Stopwatch App V1.9</title>
 	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
@@ -127,14 +127,14 @@
 
 
 		<div>
+			<label for="compNameInput">Competition Name</label>
+			<input class="form-input" type="text" id="compNameInput" placeholder="Competition Name">
+
 			<label for="race_duration">Race Duration (sec)</label>
 			<input class="form-input" type="number" id="race_duration" placeholder="seconds">
 
 			<label for="prep_time">Preparation Duration (sec)</label>
 			<input class="form-input" type="number" id="prep_time" placeholder="seconds">
-
-			<label for="Year">Competition Year</label>
-			<input class="form-input" type="text" id="comp_year" placeholder="Year">
 
 			<label for="a_team_input">A Team</label>
 			<input class="form-input" type="text" id="a_team_input" placeholder="Team Name">
@@ -149,7 +149,7 @@
 			<input class="form-input" type="number" min="1" id="nLapInput" placeholder="Number of Lap">
 			<br>
 			<br>
-			<button class="btn" style="margin-top: 1rem; font-size: 2rem;" onclick="setSettings()">Save</button>
+			<button class="btn" style=" margin-top: 1rem; font-size: 2rem;background-color:rgba(0, 0, 0, 0.5); padding:6px 12px;" onclick="setSettings()">Save</button>
 		</div>
 	</div>
 
