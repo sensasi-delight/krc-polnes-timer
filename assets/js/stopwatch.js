@@ -4,17 +4,34 @@ let isRaceBegin = false;
 let isAFinished = false;
 let isBFinished = false;
 
-let finishedTeamCount = 0;
-
 let loop;
 
-//waktu hitung mundur di set disini dalam milisecond 
+//waktu hitung mundur di set disini dalam milisecond
 let prepDuration = setting.prep_time * 1000;
 
 //waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
 let raceDuration = setting.race_duration * 1000;
 
+
 let isMuted = false;
+let beginTime = undefined
+
+const teamTimes = {
+	a: [],
+	b: []
+}
+
+const sfx = {
+	checkpoint: document.getElementById("checkpointSound"),
+	raceEndAudio: document.getElementById("raceEndAudio"),
+	timesUpAudio: document.getElementById("timesUpAudio"),
+	prepare: document.getElementById("prepare"),
+	start: document.getElementById("start"),
+	mainThemeAudio: document.getElementById('mainThemeAudio'),
+	applauseAudio: document.getElementById('applauseAudio'),
+}
+
+sfx.applauseAudio.volume = 0.8
 
 
 function checkPressedKey(e) {
@@ -25,121 +42,178 @@ function checkPressedKey(e) {
 		//info kode ascii lihat disini http://www.theasciicode.com.ar/
 		case 65: //65 = a => untuk TIM A
 			if (!isAFinished && isRaceBegin) {
-				finishing("A")
-			};
-			break;
+				checkpointTeam('a')
+			}
+			break
+
 		case 66: // b => untuk TIM B
 			if (!isBFinished && isRaceBegin) {
-				finishing("B")
-			};
-			break;
+				checkpointTeam('b')
+			}
+			break
+
 		case 32: // == Spasi
 			if (!isRaceBegin) {
-				prepTimerStart();
+				prepTimerStart()
 			}
-			break;
+			break
 
 		case 77: // == M
-			mute(isMuted = !isMuted);
-			break;
+			mute(isMuted = !isMuted)
+			break
 
 		case 82: //82 = R
 			reset()
-			break;
+			break
 	}
 }
 
 const reset = () => {
-    window.location.reload();
+	window.location.reload()
 }
+
+
+const printAllLaps = () => {
+	const aTimeLap = document.getElementById('aTimeLap')
+	const midLapNo = document.getElementById('midLapNo')
+	const bTimeLap = document.getElementById('bTimeLap')
+
+	aTimeLap.innerHTML = ''
+	midLapNo.innerHTML = ''
+	bTimeLap.innerHTML = ''
+
+	for (let i = 0; i < setting.nLap; i++) {
+		if (!teamTimes.a[i] && !teamTimes.b[i]) {
+			midLapNo.innerHTML += "<p>" + (i + 1) + "</p>"
+		} else if (teamTimes.a[i] && !teamTimes.b[i]) {
+			midLapNo.innerHTML += "<p>&lt;&lt; " + (i + 1) + "</p>"
+		} else if (!teamTimes.a[i] && teamTimes.b[i]) {
+			midLapNo.innerHTML += '<p>' + (i + 1) + ' &gt;&gt;</p>'
+		} else {
+			if (teamTimes.a[i] < teamTimes.b[i]) {
+				midLapNo.innerHTML += "<p>&lt;&lt; " + (i + 1) + "</p>"
+			} else {
+				midLapNo.innerHTML += '<p>' + (i + 1) + ' &gt;&gt;</p>'
+			}
+		}
+
+
+		if (teamTimes.a[i]) {
+			const aTime = msToArrTime(teamTimes.a[i])
+			aTimeLap.innerHTML += '<p>' + aTime[0] + ':' + aTime[1] + ' ' + aTime[2] + ' </p>'
+		} else {
+			aTimeLap.innerHTML += '<p>--:--</p>'
+		}
+
+		if (teamTimes.b[i]) {
+			const bTime = msToArrTime(teamTimes.b[i])
+			bTimeLap.innerHTML += '<p>' + bTime[0] + ':' + bTime[1] + ' ' + bTime[2] + ' </p>'
+		} else {
+			bTimeLap.innerHTML += '<p>--:--</p>'
+		}
+	}
+}
+
+
 
 //starting preparation timer
 const prepTimerStart = () => {
-	let limit = new Date().getTime() + (prepDuration);
+	sfx.mainThemeAudio.currentTime = 0
+	sfx.mainThemeAudio.volume = 0.8
+	sfx.mainThemeAudio.loop = true
+
+	sfx.mainThemeAudio.play()
+	const limit = new Date().getTime() + (prepDuration)
 
 	loop = setInterval(() => {
-		let now = new Date().getTime();
-		let remaining = limit - now;
+		const now = new Date().getTime()
+		const remaining = limit - now
 
-		toDisplayHtml(formatTime(remaining));
+		toDisplayHtml(msToArrTime(remaining))
 
 		if (remaining <= 0) {
-			toDisplayHtml(["00", "00", "00"]);
-			clearInterval(loop);
-			raceTimerStart();
-		};
-	}, 10);
+			toDisplayHtml(["00", "00", "00"])
+			clearInterval(loop)
+			raceStart()
+		}
+	}, 10)
 }
 
+
+
+
 //starting race timer
-const raceTimerStart = () => {
-	document.getElementById('mode').innerHTML = "";
-	document.getElementById("prepare").play();
+const raceStart = () => {
+	document.getElementById('mode').innerHTML = ""
+	sfx.mainThemeAudio.currentTime = 0
+	sfx.mainThemeAudio.pause()
+	sfx.prepare.play()
 
 	setTimeout(() => {
-		document.getElementById("start").play();
-		isRaceBegin = true;
-		let beginTime = new Date().getTime();
+		sfx.start.play()
+		sfx.mainThemeAudio.volume = 0.4
+		sfx.mainThemeAudio.play()
+
+		isRaceBegin = true
+		beginTime = new Date().getTime()
 
 		//looping sampai elapsedTime >= raceDuration
 		loop = setInterval(() => {
-			let nowTime = new Date().getTime();
-			let elapsedTime = nowTime - beginTime;
+			const nowTime = new Date().getTime()
+			const elapsedTime = nowTime - beginTime
 
-			toDisplayHtml(formatTime(elapsedTime));
+			toDisplayHtml(msToArrTime(elapsedTime))
 
 			if (elapsedTime >= raceDuration) {
-				document.getElementById("limit").play();
-				toDisplayHtml(formatTime(raceDuration));
-
-				if (!isAFinished) {
-					toTeamDisplayHtml("A");
-				}
-
-				if (!isBFinished) {
-					toTeamDisplayHtml("B");
-				}
-
-				clearInterval(loop);
-			};
-		}, 10);
-	}, 7000); //7000ms adala durasi dari musik prepare
+				sfx.timesUpAudio.play()
+				sfx.mainThemeAudio.pause()
+				toDisplayHtml(msToArrTime(raceDuration))
+				clearInterval(loop)
+			}
+		}, 10)
+	}, 6989) //6989ms adala durasi dari musik prepare
 }
 
 
-//finishing team
-const finishing = (team) => {
-	finishedTeamCount++;
-	if (finishedTeamCount == 2) {
-		clearInterval(loop);
+const checkpointTeam = (teamName) => {
+	sfx.checkpoint.pause()
+	sfx.checkpoint.currentTime = 0
+	sfx.checkpoint.play()
+
+	teamTimes[teamName].push(new Date().getTime() - beginTime)
+	printAllLaps()
+
+	if (teamTimes[teamName].length === parseInt(setting.nLap)) {
+		teamReachFinish(teamName)
 	}
+}
 
-	document.getElementById("win").play();
+const teamReachFinish = (teamName) => {
+	sfx.applauseAudio.play()
 
-	switch (team) {
-		case "A":
+	switch (teamName) {
+		case "a":
 			isAFinished = true;
-			win = (win === 1) ? 2 : 1;
 			break;
-		case "B":
+		case "b":
 			isBFinished = true;
-			win = (win === 1) ? 2 : 1;
 			break;
 	}
 
-	toTeamDisplayHtml(team);
-	document.getElementById("winTeam" + team)
-		.setAttribute('class', (finishedTeamCount == 1) ? 'winner' : 'lose');
-	document.getElementById("winTeam" + team)
-		.innerHTML = (finishedTeamCount == 1) ? 'WINNER' : 'LOSE';
+	if (isAFinished && isBFinished) {
+		sfx.mainThemeAudio.pause()
+		sfx.applauseAudio.pause()
+		sfx.raceEndAudio.play()
+		clearInterval(loop)
+	}
 }
 
 //fungsi untuk muted suara audio
 const mute = (isMuted) => {
-	document.getElementById('prepare').muted = isMuted;
-	document.getElementById('win').muted = isMuted;
-	document.getElementById('start').muted = isMuted;
-	document.getElementById('limit').muted = isMuted;
+	document.getElementById('prepare').muted = isMuted
+	raceEndAudio.muted = isMuted
+	document.getElementById('start').muted = isMuted
+	document.getElementById('limit').muted = isMuted
 }
 
 
@@ -151,29 +225,31 @@ const toDisplayHtml = (formatedTime) => {
 
 //for displaying team time record
 const toTeamDisplayHtml = (team) => {
-	let minsec = document.getElementById('disp').innerHTML;
-	let ms = document.getElementById('dispMs').innerHTML
-	document.getElementById("fin" + team).innerHTML = minsec + '.' + ms;
+	// let minsec = document.getElementById('disp').innerHTML
+	// let ms = document.getElementById('dispMs').innerHTML
+
+
+	// document.getElementById("fin" + team).innerHTML = minsec + '.' + ms
 }
 
 //formating from number ms to min, sec, ms
-const formatTime = (nMs) => {
+const msToArrTime = (nMs) => {
 	//fungsi ini untuk menambahkan "0" pada angka yang dibawah 10
 	const addPrefix = (n) => {
 		if (n < 10) {
 			n = "0" + n
-		};
+		}
 
-		return n;
+		return n
 	}
 
-	min = Math.floor(nMs / 60000);
-	sec = Math.floor((nMs - min * 60000) / 1000);
-	ms = Math.floor((nMs - sec * 1000 - min * 60000) / 10);
+	min = Math.floor(nMs / 60000)
+	sec = Math.floor((nMs - min * 60000) / 1000)
+	ms = Math.floor((nMs - sec * 1000 - min * 60000) / 10)
 
-	min = addPrefix(min);
-	sec = addPrefix(sec);
-	ms = addPrefix(ms);
+	min = addPrefix(min)
+	sec = addPrefix(sec)
+	ms = addPrefix(ms)
 
-	return [min, sec, ms];
+	return [min, sec, ms]
 }
