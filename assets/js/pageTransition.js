@@ -17,7 +17,7 @@ const routeToPage = (page) => {
 
     case "settings":
       window.removeEventListener("keyup", checkPressedKey);
-      showPage("setting", "bgImage1");
+      showPage("setting", "bgImage4");
       break;
   }
 };
