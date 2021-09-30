@@ -8,7 +8,7 @@ const sfx = {
 	applauseAudio: document.getElementById('applauseAudio'),
 }
 
-sfx.applauseAudio.volume = 0.8
+
 
 //fungsi untuk muted suara audio
 const toggleBgm = (isMuted) => {
@@ -24,42 +24,61 @@ const toggleSfx = (isMuted) => {
 	sfx.prepare.muted = isMuted
 }
 
+// global dynamic var list
+let isIdle,
+	isTimerStart,
+	isRaceBegin,
+	isPrepBegin,
+
+	isAFinished,
+	isBFinished,
+
+	remainTime,
+	elapsedTime,
+	teamTimes
 
 
+const initVarState = () => {
+	isIdle = false;
+	isTimerStart = false;
+	isRaceBegin = false;
+	isPrepBegin = false;
+
+	isAFinished = false;
+	isBFinished = false;
 
 
+	remainTime = undefined
+	elapsedTime = undefined
 
-let setting = getSetting()
-
-let isRaceBegin = false;
-let isAFinished = false;
-let isBFinished = false;
-
-let loop;
-
-//waktu hitung mundur di set disini dalam milisecond
-let prepDuration = setting.prep_time * 1000;
-
-//waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
-let raceDuration = setting.race_duration * 1000;
-
-
-let beginTime = undefined
-
-const teamTimes = {
-	a: [],
-	b: []
+	teamTimes = {
+		a: [],
+		b: []
+	}
 }
 
 
+const setting = getSetting()
 
-toggleSfx(setting.isSfxEnabled)
-toggleBgm(setting.isBgmEnabled)
+//waktu hitung mundur di set disini dalam milisecond
+const prepDuration = setting.prep_time * 1000;
+
+//waktu hitung maju di set disini dalam milisecond, contoh : saya ingin mengeset 5 detik jadi   (detik yg diinginkan)*(1 detik dalam milisecond) = 5*1000 = 5000 miliseconds
+const raceDuration = setting.race_duration * 1000;
+
+let theInterval
+
+initVarState()
+toggleSfx(!setting.isSfxEnabled)
+toggleBgm(!setting.isBgmEnabled)
+sfx.applauseAudio.volume = 0.5
+sfx.mainThemeAudio.loop = true
 
 
 function checkPressedKey(e) {
 	// Debug untuk memastikan keyCode yang ditekan pada keyboard.
 	// console.log(e.keyCode);
+
 	switch (e.keyCode) {
 		//Keymap, untuk mengeset key masukan kode ascii nya.
 		//info kode ascii lihat disini http://www.theasciicode.com.ar/
@@ -76,29 +95,66 @@ function checkPressedKey(e) {
 			break
 
 		case 32: // == Spasi
-			if (!isRaceBegin) {
-				prepTimerStart()
+			if (!isTimerStart) {
+				isTimerStart = true
+
+				if (isRaceBegin) {
+					sfx.mainThemeAudio.play()
+
+					console.log('race');
+					//resume race
+					const beginTime = new Date().getTime() - elapsedTime
+					theInterval = setInterval(() => raceInterval(beginTime), 10)
+				} else if (isPrepBegin) {
+					sfx.mainThemeAudio.play()
+
+					console.log('prep');
+
+					// resume prep
+					limitTime = new Date().getTime() + remainTime
+					theInterval = setInterval(() => prepInterval(limitTime), 10)
+				} else {
+					console.log('begin');
+
+					// start from begining
+					startPrepTime()
+				}
+			} else {
+				// pause()
+				if (!isIdle) {
+					isTimerStart = false
+					clearInterval(theInterval)
+					sfx.mainThemeAudio.pause()
+				}
 			}
 			break
 
 		case 79: // == o
-			toggleSfx(setting.isSfxEnabled = !setting.isSfxEnabled)
+			setting.isSfxEnabled = !setting.isSfxEnabled
+			toggleSfx(!setting.isSfxEnabled)
 			localStorage.setItem('krc_timer_setting', JSON.stringify(setting))
 			break
 
 		case 80: // == p
-			toggleBgm(setting.isBgmEnabled = !setting.isBgmEnabled)
+			setting.isBgmEnabled = !setting.isBgmEnabled
+			toggleBgm(!setting.isBgmEnabled)
 			localStorage.setItem('krc_timer_setting', JSON.stringify(setting))
 			break
 
 		case 82: //82 = R
-			reset()
-			break
-	}
-}
+			// reset()
+			if (!isIdle && !isTimerStart) {
+				sfx.mainThemeAudio.pause()
+				sfx.mainThemeAudio.currentTime = 0
 
-const reset = () => {
-	window.location.reload()
+				clearInterval(theInterval)
+				initVarState()
+				toDisplayHtml(msToArrTime(prepDuration))
+				printAllLaps()
+				break
+			}
+	}
+
 }
 
 
@@ -144,77 +200,66 @@ const printAllLaps = () => {
 }
 
 
+const prepInterval = limitTime => {
+	const now = new Date().getTime()
+	remainTime = limitTime - now
 
-//starting preparation timer
-const prepTimerStart = () => {
-	sfx.mainThemeAudio.currentTime = 0
+	toDisplayHtml(msToArrTime(remainTime))
+
+	if (remainTime <= 0) {
+		toDisplayHtml(["00", "00", "00"])
+		clearInterval(theInterval)
+		raceStart()
+	}
+}
+
+
+const startPrepTime = () => {
+	isPrepBegin = true
 	sfx.mainThemeAudio.volume = 0.8
-	sfx.mainThemeAudio.loop = true
 
 	sfx.mainThemeAudio.play()
 	const limit = new Date().getTime() + (prepDuration)
 
-	loop = setInterval(() => {
-		const now = new Date().getTime()
-		const remaining = limit - now
-
-		toDisplayHtml(msToArrTime(remaining))
-
-		if (remaining <= 0) {
-			toDisplayHtml(["00", "00", "00"])
-			clearInterval(loop)
-			raceStart()
-		}
-	}, 10)
+	theInterval = setInterval(() => prepInterval(limit), 10)
 }
 
 
+const raceInterval = beginTime => {
+	const nowTime = new Date().getTime()
+	elapsedTime = nowTime - beginTime
 
+	toDisplayHtml(msToArrTime(elapsedTime))
 
-//starting race timer
+	if (elapsedTime >= raceDuration) {
+		sfx.timesUpAudio.play()
+		sfx.mainThemeAudio.pause()
+		toDisplayHtml(msToArrTime(raceDuration))
+		clearInterval(theInterval)
+		isTimerStart = false
+	}
+}
+
 const raceStart = () => {
+	isIdle = true
 	document.getElementById('mode').innerHTML = ""
-	sfx.mainThemeAudio.currentTime = 0
 	sfx.mainThemeAudio.pause()
 	sfx.prepare.play()
-
+	
 	setTimeout(() => {
 		sfx.start.play()
+		sfx.mainThemeAudio.currentTime = 0
 		sfx.mainThemeAudio.volume = 0.4
 		sfx.mainThemeAudio.play()
+		isIdle = false
 
 		isRaceBegin = true
-		beginTime = new Date().getTime()
+		const beginTime = new Date().getTime()
 
 		//looping sampai elapsedTime >= raceDuration
-		loop = setInterval(() => {
-			const nowTime = new Date().getTime()
-			const elapsedTime = nowTime - beginTime
+		theInterval = setInterval(() => raceInterval(beginTime), 10)
 
-			toDisplayHtml(msToArrTime(elapsedTime))
-
-			if (elapsedTime >= raceDuration) {
-				sfx.timesUpAudio.play()
-				sfx.mainThemeAudio.pause()
-				toDisplayHtml(msToArrTime(raceDuration))
-				clearInterval(loop)
-			}
-		}, 10)
 	}, 6989) //6989ms adala durasi dari musik prepare
-}
-
-
-const checkpointTeam = (teamName) => {
-	sfx.checkpoint.pause()
-	sfx.checkpoint.currentTime = 0
-	sfx.checkpoint.play()
-
-	teamTimes[teamName].push(new Date().getTime() - beginTime)
-	printAllLaps()
-
-	if (teamTimes[teamName].length === parseInt(setting.nLap)) {
-		teamReachFinish(teamName)
-	}
 }
 
 const teamReachFinish = (teamName) => {
@@ -233,7 +278,22 @@ const teamReachFinish = (teamName) => {
 		sfx.mainThemeAudio.pause()
 		sfx.applauseAudio.pause()
 		sfx.raceEndAudio.play()
-		clearInterval(loop)
+		clearInterval(theInterval)
+		isTimerStart = false
+
+	}
+}
+
+const checkpointTeam = (teamName) => {
+	sfx.checkpoint.pause()
+	sfx.checkpoint.currentTime = 0
+	sfx.checkpoint.play()
+
+	teamTimes[teamName].push(elapsedTime)
+	printAllLaps()
+
+	if (teamTimes[teamName].length === parseInt(setting.nLap)) {
+		teamReachFinish(teamName)
 	}
 }
 
